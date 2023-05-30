@@ -5,6 +5,7 @@ import { Infraction } from './Infraction';
 
 // Routes
 import { test } from '../routes/test';
+import { getAllGuilds, getGuild } from "../routes/guilds";
 
 export class Client {
   public token: string;
@@ -13,6 +14,8 @@ export class Client {
 
   public routes = {
     test,
+    getAllGuilds,
+    getGuild
   };
 
   constructor(token: string = '0', useToken: boolean = false, silent: boolean = false) {
@@ -38,7 +41,7 @@ export class Client {
   }
 
   public async authenticate(): Promise<boolean> {
-    const { response, status } = await test(this.token);
+    const { response, status } = await test(this);
     return status === 200;
   }
 }
