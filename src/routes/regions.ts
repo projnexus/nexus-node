@@ -1,6 +1,5 @@
 import { apiRequestWithToken } from '../utils/request';
 import { Client } from '../models/Client';
-import { GuildSettings } from '../models/GuildSettings';
 
 export const getBansByRegion = async (
   client: Client,
