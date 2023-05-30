@@ -1,6 +1,6 @@
 import { getAllGuilds, getGuild, createGuild } from '../../routes/guilds';
 import { Client } from '../../models/Client';
-import {GuildSettings} from "../../models/GuildSettings";
+import { GuildSettings } from '../../models/GuildSettings';
 
 const unauthenticatedClient = new Client('1234', false, true);
 //! Uncomment if you want to test authenticated routes
@@ -32,7 +32,16 @@ describe('Guild Route', () => {
   });
 
   describe('Create guild', () => {
-    const guildSettings: GuildSettings = new GuildSettings('1234', '1234', true, true, '1234', [], new Date(), new Date());
+    const guildSettings: GuildSettings = new GuildSettings(
+      '1234',
+      '1234',
+      true,
+      true,
+      '1234',
+      [],
+      new Date(),
+      new Date(),
+    );
     test('Unauthenticated', async () => {
       const { response, status } = await createGuild(unauthenticatedClient, guildSettings);
       expect(status).toBe(401);
