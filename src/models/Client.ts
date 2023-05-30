@@ -6,6 +6,7 @@ import { Infraction } from './Infraction';
 // Routes
 import { test } from '../routes/test';
 import { getAllGuilds, getGuild, createGuild, deleteGuild, updateGuild } from '../routes/guilds';
+import { getAllInfractions, getInfraction, createInfraction, deleteInfraction, updateInfraction } from "../routes/infractions";
 
 export class Client {
   public token: string;
@@ -27,6 +28,13 @@ export class Client {
       delete: deleteGuild,
       update: updateGuild,
     },
+    infractions: {
+      getAll: getAllInfractions,
+      get: getInfraction,
+      create: createInfraction,
+      delete: deleteInfraction,
+      update: updateInfraction,
+    }
   };
 
   constructor(token: string = '0', useToken: boolean = false, silent: boolean = false) {
