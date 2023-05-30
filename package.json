@@ -1,6 +1,6 @@
 {
   "name": "@projnexus/nexus-node",
-  "version": "1.0.1",
+  "version": "1.0.11",
   "description": "Officially supported Node.js Adapter for Nexus.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
