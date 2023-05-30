@@ -13,6 +13,7 @@ import {
   deleteInfraction,
   updateInfraction,
 } from '../routes/infractions';
+import { getBansByRegion } from '../routes/regions';
 
 export class Client {
   public token: string;
@@ -40,6 +41,9 @@ export class Client {
       create: createInfraction,
       delete: deleteInfraction,
       update: updateInfraction,
+    },
+    regions: {
+      get: getBansByRegion,
     },
   };
 
