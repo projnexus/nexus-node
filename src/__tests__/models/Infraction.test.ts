@@ -1,5 +1,5 @@
-import { Infraction } from '../../index';
 import { RegionEnum } from '../../models/Region';
+import { Infraction } from '../../models/Infraction';
 
 describe('Infraction', () => {
   test('Plain Creation', () => {
