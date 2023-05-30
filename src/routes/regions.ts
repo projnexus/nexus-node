@@ -4,7 +4,7 @@ import { Client } from '../models/Client';
 export const getBansByRegion = async (
   client: Client,
   region: string,
-): Promise<{ response: Response; status: number }> => {
-  const { response, status } = await apiRequestWithToken(`regions/${region}`, client.token);
-  return { response, status };
-};
+): Promise<{ response: Response; status: number }> =>
+  await apiRequestWithToken(`regions/${region}`, client.token).then((res) => {
+    return res;
+  });
