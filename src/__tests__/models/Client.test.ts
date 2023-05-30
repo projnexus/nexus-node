@@ -14,7 +14,7 @@ describe('Client', () => {
   });
 
   test('Get token', () => {
-    const client = new Client('1234', true, true);
+    const client = new Client('1234', false, true);
     expect(client.token).toBe('1234');
   });
 
@@ -32,9 +32,14 @@ describe('Client', () => {
 
   describe('Authenticate', () => {
     test('Invalid', async () => {
-      const client = new Client('', true, true);
+      const client = new Client('', false, true);
       const authenticated = await client.authenticate();
       expect(authenticated).toBe(false);
     });
+    // test('Valid', async () => {
+    //   const client = new Client('', true, true);
+    //   const authenticated = await client.authenticate();
+    //   expect(authenticated).toBe(true);
+    // });
   });
 });
