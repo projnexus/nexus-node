@@ -1,11 +1,12 @@
 import { Infraction } from "../../index";
+import {RegionEnum} from "../../models/Region";
 
 describe('Infraction', () => {
     test("Plain Creation", () => {
-        const infraction = new Infraction("id", "userId", ["region"], "reason", "proof", 1, true, new Date(), new Date());
+        const infraction = new Infraction("id", "userId", [RegionEnum.NORTH_AMERICA, RegionEnum.SOUTH_AMERICA], "reason", "proof", 1, true, new Date(), new Date());
         expect(infraction.id).toBe("id");
         expect(infraction.userId).toBe("userId");
-        expect(infraction.regions).toStrictEqual(["region"]);
+        expect(infraction.regions).toStrictEqual([RegionEnum.NORTH_AMERICA, RegionEnum.SOUTH_AMERICA]);
         expect(infraction.reason).toBe("reason");
         expect(infraction.proof).toBe("proof");
         expect(infraction.executor).toBe(1);
@@ -18,7 +19,7 @@ describe('Infraction', () => {
         const infraction = Infraction.fromJson({
             id: "id",
             infractionUserId: "userId",
-            regions: ["region"],
+            regions: ["oceania", "africa"],
             reason: "reason",
             proof: "proof",
             executor: 1,
@@ -28,7 +29,7 @@ describe('Infraction', () => {
         });
         expect(infraction.id).toBe("id");
         expect(infraction.userId).toBe("userId");
-        expect(infraction.regions).toStrictEqual(["region"]);
+        expect(infraction.regions).toStrictEqual([RegionEnum.OCEANIA, RegionEnum.AFRICA]);
         expect(infraction.reason).toBe("reason");
         expect(infraction.proof).toBe("proof");
         expect(infraction.executor).toBe(1);
@@ -38,11 +39,11 @@ describe('Infraction', () => {
     });
 
     test("Conversion to JSON", () => {
-        const infraction = new Infraction("id", "userId", ["region"], "reason", "proof", 1, true, new Date(), new Date());
+        const infraction = new Infraction("id", "userId", [RegionEnum.SOUTH_AMERICA, RegionEnum.EUROPE], "reason", "proof", 1, true, new Date(), new Date());
         expect(infraction.toJson()).toStrictEqual({
             id: "id",
             infractionUserId: "userId",
-            regions: ["region"],
+            regions: ["sa", "europe"],
             reason: "reason",
             proof: "proof",
             executor: 1,
