@@ -2,6 +2,7 @@ export const apiRequest = async (
   endpoint: string,
   method: string = 'GET',
   body: object = {},
+  // @ts-ignore
 ): Promise<{ response: Response; status: number }> => {
   const requestOptions: RequestInit = {
     method,
@@ -16,10 +17,10 @@ export const apiRequest = async (
     requestOptions.body = JSON.stringify(body);
   }
 
-  const response = await fetch(`https://projectnexus.cc/api/${endpoint}`, requestOptions);
-
-  const status = response.status;
-  return { response, status };
+  await fetch(`https://projectnexus.cc/api/${endpoint}`, requestOptions).then((res) => {
+    const status = res.status;
+    return { res, status };
+  });
 };
 
 export const apiRequestWithToken = async (
@@ -27,6 +28,7 @@ export const apiRequestWithToken = async (
   token: string,
   method: string = 'GET',
   body: object = {},
+  // @ts-ignore
 ): Promise<{ response: Response; status: number }> => {
   const requestOptions: RequestInit = {
     method,
@@ -42,8 +44,8 @@ export const apiRequestWithToken = async (
     requestOptions.body = JSON.stringify(body);
   }
 
-  const response = await fetch(`https://projectnexus.cc/api/${endpoint}`, requestOptions);
-
-  const status = response.status;
-  return { response, status };
+  fetch(`https://projectnexus.cc/api/${endpoint}`, requestOptions).then((res) => {
+    const status = res.status;
+    return { res, status };
+  });
 };
