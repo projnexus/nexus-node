@@ -5,17 +5,24 @@ import { Infraction } from './Infraction';
 
 // Routes
 import { test } from '../routes/test';
-import { getAllGuilds, getGuild } from "../routes/guilds";
+import { getAllGuilds, getGuild, createGuild } from '../routes/guilds';
 
 export class Client {
   public token: string;
   public useToken: boolean;
   public silent: boolean;
 
+  public models = {
+    GuildSettings,
+    Region,
+    Infraction,
+  }
+
   public routes = {
     test,
     getAllGuilds,
-    getGuild
+    getGuild,
+    createGuild,
   };
 
   constructor(token: string = '0', useToken: boolean = false, silent: boolean = false) {
