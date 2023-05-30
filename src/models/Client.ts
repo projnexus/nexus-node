@@ -15,6 +15,7 @@ import {
 } from '../routes/infractions';
 import { getBansByRegion } from '../routes/regions';
 import { createKey } from '../routes/admin';
+import { getAllUsers, getUser, deleteUser } from '../routes/users';
 
 export class Client {
   public token: string;
@@ -42,6 +43,11 @@ export class Client {
       create: createInfraction,
       delete: deleteInfraction,
       update: updateInfraction,
+    },
+    users: {
+      getAll: getAllUsers,
+      get: getUser,
+      delete: deleteUser,
     },
     regions: {
       get: getBansByRegion,
