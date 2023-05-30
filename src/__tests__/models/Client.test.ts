@@ -36,7 +36,7 @@ describe('Client', () => {
       const authenticated = await client.authenticate();
       expect(authenticated).toBe(false);
     });
-    // test('Valid', async () => {
+    // testroute('Valid', async () => {
     //   const client = new Client('', true, true);
     //   const authenticated = await client.authenticate();
     //   expect(authenticated).toBe(true);

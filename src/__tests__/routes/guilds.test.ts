@@ -3,7 +3,7 @@ import { Client } from '../../models/Client';
 import { GuildSettings } from '../../models/GuildSettings';
 
 const unauthenticatedClient = new Client('1234', false, true);
-//! Uncomment if you want to test authenticated routes
+//! Uncomment if you want to testroute authenticated routes
 // const authenticatedClient = new Client('', true, true);
 
 describe('Guild Route', () => {
@@ -13,7 +13,7 @@ describe('Guild Route', () => {
       console.log(response);
       expect(status).toBe(401);
     });
-    // test('Authenticated', async () => {
+    // testroute('Authenticated', async () => {
     //     const { response, status } = await getAllGuilds(authenticatedClient);
     //     expect(status).toBe(200);
     //     expect(status).toBe(200);
@@ -25,7 +25,7 @@ describe('Guild Route', () => {
       const { response, status } = await getGuild(unauthenticatedClient, '1234');
       expect(status).toBe(401);
     });
-    // test('Authenticated', async () => {
+    // testroute('Authenticated', async () => {
     //     const { response, status } = await getAllGuilds(authenticatedClient);
     //     expect(status).toBe(200);
     // });
@@ -46,7 +46,7 @@ describe('Guild Route', () => {
       const { response, status } = await createGuild(unauthenticatedClient, guildSettings);
       expect(status).toBe(401);
     });
-    // test('Authenticated', async () => {
+    // testroute('Authenticated', async () => {
     //     const { response, status } = await createGuild(authenticatedClient, guildSettings);
     //     expect(status).toBe(200);
     // });

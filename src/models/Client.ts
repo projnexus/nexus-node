@@ -4,7 +4,7 @@ import { Region } from './Region';
 import { Infraction } from './Infraction';
 
 // Routes
-import { test } from '../routes/test';
+import { testroute } from '../routes/testroute';
 import { getAllGuilds, getGuild, createGuild, deleteGuild, updateGuild } from '../routes/guilds';
 import {
   getAllInfractions,
@@ -29,7 +29,7 @@ export class Client {
   };
 
   public routes = {
-    test,
+    test: testroute,
     guilds: {
       getAll: getAllGuilds,
       get: getGuild,
@@ -80,7 +80,7 @@ export class Client {
   }
 
   public async authenticate(): Promise<boolean> {
-    const { response, status } = await test(this);
+    const { response, status } = await testroute(this);
     return status === 200;
   }
 }
