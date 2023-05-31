@@ -31,35 +31,35 @@ export class Client {
     GuildSettings,
     Region,
     Infraction,
-    User
+    User,
   };
 
   public routes: {
-    test: (() => Promise<{ response: Response; status: number }>);
+    test: () => Promise<{ response: Response; status: number }>;
     guilds: {
-      getAll: (() => Promise<{ response: Response; status: number }>)
-      get: ((guildId: string) => Promise<{ response: Response; status: number }>);
-      create: ((guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>);
-      delete: ((guildId: string) => Promise<{ response: Response; status: number }>);
-      update: ((guildId: string, guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>);
+      getAll: () => Promise<{ response: Response; status: number }>;
+      get: (guildId: string) => Promise<{ response: Response; status: number }>;
+      create: (guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>;
+      delete: (guildId: string) => Promise<{ response: Response; status: number }>;
+      update: (guildId: string, guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>;
     };
     infractions: {
-      getAll: (() => Promise<{ response: Response; status: number }>);
-      get: ((infractionId: string) => Promise<{ response: Response; status: number }>);
-      create: ((infraction: Infraction) => Promise<{ response: Response; status: number }>);
-      delete: ((infractionId: string) => Promise<{ response: Response; status: number }>);
-      update: ((infractionId: string, infraction: Infraction) => Promise<{ response: Response; status: number }>);
+      getAll: () => Promise<{ response: Response; status: number }>;
+      get: (infractionId: string) => Promise<{ response: Response; status: number }>;
+      create: (infraction: Infraction) => Promise<{ response: Response; status: number }>;
+      delete: (infractionId: string) => Promise<{ response: Response; status: number }>;
+      update: (infractionId: string, infraction: Infraction) => Promise<{ response: Response; status: number }>;
     };
     users: {
-      getAll: (() => Promise<{ response: Response; status: number }>);
-      get: ((userId: string) => Promise<{ response: Response; status: number }>);
-      delete: ((user: User) => Promise<{ response: Response; status: number }>);
+      getAll: () => Promise<{ response: Response; status: number }>;
+      get: (userId: string) => Promise<{ response: Response; status: number }>;
+      delete: (user: User) => Promise<{ response: Response; status: number }>;
     };
     regions: {
-      get: ((regionId: string) => Promise<{ response: Response; status: number }>);
+      get: (regionId: string) => Promise<{ response: Response; status: number }>;
     };
     admin: {
-      createKey: ((data: object) => Promise<{ response: Response; status: number }>);
+      createKey: (data: object) => Promise<{ response: Response; status: number }>;
     };
   } = {
     test: testroute.bind(this),
