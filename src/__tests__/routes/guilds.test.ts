@@ -9,12 +9,11 @@ const unauthenticatedClient = new Client('1234', false, true);
 describe('Guild Route', () => {
   describe('Get all guilds', () => {
     test('Unauthenticated', async () => {
-      const { response, status } = await getAllGuilds(unauthenticatedClient);
-      console.log(response);
+      const { response, status } = await unauthenticatedClient.routes.guilds.getAll();
       expect(status).toBe(401);
     });
     // testroute('Authenticated', async () => {
-    //     const { response, status } = await getAllGuilds(authenticatedClient);
+    //     const { response, status } = await authenticatedClient.routes.guilds.getAll(authenticatedClient);
     //     expect(status).toBe(200);
     //     expect(status).toBe(200);
     // });
@@ -22,12 +21,12 @@ describe('Guild Route', () => {
 
   describe('Get guild', () => {
     test('Unauthenticated', async () => {
-      const { response, status } = await getGuild(unauthenticatedClient, '1234');
+      const { response, status } = await unauthenticatedClient.routes.guilds.get('1234');
       expect(status).toBe(401);
     });
-    // testroute('Authenticated', async () => {
-    //     const { response, status } = await getAllGuilds(authenticatedClient);
-    //     expect(status).toBe(200);
+    // test('Authenticated', async () => {
+    //   const { response, status } = await authenticatedClient.routes.guilds.get('1234');
+    //   expect(status).toBe(401);
     // });
   });
 
@@ -43,11 +42,11 @@ describe('Guild Route', () => {
       new Date(),
     );
     test('Unauthenticated', async () => {
-      const { response, status } = await createGuild(unauthenticatedClient, guildSettings);
+      const { response, status } = await unauthenticatedClient.routes.guilds.create(guildSettings);
       expect(status).toBe(401);
     });
     // testroute('Authenticated', async () => {
-    //     const { response, status } = await createGuild(authenticatedClient, guildSettings);
+    //     const { response, status } = await authenticatedClient.routes.guild.create(guildSettings);
     //     expect(status).toBe(200);
     // });
   });
