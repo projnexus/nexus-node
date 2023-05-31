@@ -2,40 +2,41 @@ import { apiRequestWithToken } from '../utils/request';
 import { Client } from '../models/Client';
 import { Infraction } from '../models/Infraction';
 
-export const getAllInfractions = async (client: Client): Promise<{ response: Response; status: number }> =>
-  await apiRequestWithToken('infractions', client.token).then((res) => {
-    return res;
-  });
+export const getAllInfractions = async function(this: Client): Promise<{ response: Response; status: number }> {
+    if (!this) throw new Error('Client not initialized');
+    return await apiRequestWithToken('infractions', this.token);
+}
 
-export const getInfraction = async (
-  client: Client,
+
+export const getInfraction = async function(
+  this: Client,
   infractionId: string,
-): Promise<{ response: Response; status: number }> =>
-  await apiRequestWithToken(`infractions/${infractionId}`, client.token).then((res) => {
-    return res;
-  });
+): Promise<{ response: Response; status: number }> {
+    if (!this) throw new Error('Client not initialized');
+    return await apiRequestWithToken(`infractions/${infractionId}`, this.token);
+}
 
-export const createInfraction = async (
-  client: Client,
+export const createInfraction = async function(
+  this: Client,
   infraction: Infraction,
-): Promise<{ response: Response; status: number }> =>
-  await apiRequestWithToken(`infractions`, client.token, 'POST', infraction.toJson()).then((res) => {
-    return res;
-  });
+): Promise<{ response: Response; status: number }> {
+    if (!this) throw new Error('Client not initialized');
+    return await apiRequestWithToken(`infractions`, this.token, 'POST', infraction.toJson());
+}
 
-export const deleteInfraction = async (
-  client: Client,
+export const deleteInfraction = async function(
+  this: Client,
   infractionId: string,
-): Promise<{ response: Response; status: number }> =>
-  await apiRequestWithToken(`infractions/${infractionId}`, client.token, 'DELETE').then((res) => {
-    return res;
-  });
+): Promise<{ response: Response; status: number }> {
+    if (!this) throw new Error('Client not initialized');
+    return await apiRequestWithToken(`infractions/${infractionId}`, this.token, 'DELETE');
+}
 
-export const updateInfraction = async (
-  client: Client,
+export const updateInfraction = async function(
+  this: Client,
   infractionId: string,
   infraction: Infraction,
-): Promise<{ response: Response; status: number }> =>
-  await apiRequestWithToken(`infractions/${infractionId}`, client.token, 'PATCH', infraction.toJson()).then((res) => {
-    return res;
-  });
+): Promise<{ response: Response; status: number }> {
+    if (!this) throw new Error('Client not initialized');
+    return await apiRequestWithToken(`infractions/${infraction.id}`, this.token, 'PATCH', infraction.toJson());
+}

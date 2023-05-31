@@ -1,7 +1,12 @@
+//// Welcome to the extremely messy Node adapter
+//// This is a work in progress and will be cleaned up in the future
+//// Our priority is to get the Java adapter working first
+
 // Models
 import { GuildSettings } from './GuildSettings';
 import { Region } from './Region';
 import { Infraction } from './Infraction';
+import { User } from './User';
 
 // Routes
 import { testroute } from '../routes/testroute';
@@ -26,34 +31,62 @@ export class Client {
     GuildSettings,
     Region,
     Infraction,
+    User
   };
 
-  public routes = {
-    test: testroute,
+  public routes: {
+    test: (() => Promise<{ response: Response; status: number }>);
     guilds: {
-      getAll: getAllGuilds,
-      get: getGuild,
-      create: createGuild,
-      delete: deleteGuild,
-      update: updateGuild,
+      getAll: (() => Promise<{ response: Response; status: number }>)
+      get: ((guildId: string) => Promise<{ response: Response; status: number }>);
+      create: ((guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>);
+      delete: ((guildId: string) => Promise<{ response: Response; status: number }>);
+      update: ((guildId: string, guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>);
+    };
+    infractions: {
+      getAll: (() => Promise<{ response: Response; status: number }>);
+      get: ((infractionId: string) => Promise<{ response: Response; status: number }>);
+      create: ((infraction: Infraction) => Promise<{ response: Response; status: number }>);
+      delete: ((infractionId: string) => Promise<{ response: Response; status: number }>);
+      update: ((infractionId: string, infraction: Infraction) => Promise<{ response: Response; status: number }>);
+    };
+    users: {
+      getAll: (() => Promise<{ response: Response; status: number }>);
+      get: ((userId: string) => Promise<{ response: Response; status: number }>);
+      delete: ((user: User) => Promise<{ response: Response; status: number }>);
+    };
+    regions: {
+      get: ((regionId: string) => Promise<{ response: Response; status: number }>);
+    };
+    admin: {
+      createKey: ((data: object) => Promise<{ response: Response; status: number }>);
+    };
+  } = {
+    test: testroute.bind(this),
+    guilds: {
+      getAll: getAllGuilds.bind(this),
+      get: getGuild.bind(this),
+      create: createGuild.bind(this),
+      delete: deleteGuild.bind(this),
+      update: updateGuild.bind(this),
     },
     infractions: {
-      getAll: getAllInfractions,
-      get: getInfraction,
-      create: createInfraction,
-      delete: deleteInfraction,
-      update: updateInfraction,
+      getAll: getAllInfractions.bind(this),
+      get: getInfraction.bind(this),
+      create: createInfraction.bind(this),
+      delete: deleteInfraction.bind(this),
+      update: updateInfraction.bind(this),
     },
     users: {
-      getAll: getAllUsers,
-      get: getUser,
-      delete: deleteUser,
+      getAll: getAllUsers.bind(this),
+      get: getUser.bind(this),
+      delete: deleteUser.bind(this),
     },
     regions: {
-      get: getBansByRegion,
+      get: getBansByRegion.bind(this),
     },
     admin: {
-      createKey,
+      createKey: createKey.bind(this),
     },
   };
 
@@ -80,7 +113,7 @@ export class Client {
   }
 
   public async authenticate(): Promise<boolean> {
-    const { response, status } = await testroute(this);
+    const { response, status } = await this.routes.test();
     return status === 200;
   }
 }
