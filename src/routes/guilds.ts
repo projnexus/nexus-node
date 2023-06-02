@@ -7,7 +7,7 @@ export const getGuild = async function (
   guildId: string,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`guilds/${guildId}`, this.token);
+  return await apiRequestWithToken(`guild/${guildId}`, this.token);
 };
 
 export const createGuild = async function (
@@ -15,7 +15,7 @@ export const createGuild = async function (
   guildSettings: GuildSettings,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`guilds`, this.token, 'POST', guildSettings.toJson());
+  return await apiRequestWithToken(`guild`, this.token, 'POST', guildSettings.toJson());
 };
 
 export const deleteGuild = async function (
@@ -23,7 +23,7 @@ export const deleteGuild = async function (
   guildId: string,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`guilds/${guildId}`, this.token, 'DELETE');
+  return await apiRequestWithToken(`guild/${guildId}`, this.token, 'DELETE');
 };
 
 export const updateGuild = async function (
@@ -32,5 +32,5 @@ export const updateGuild = async function (
   guildSettings: GuildSettings,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`guilds/${guildId}`, this.token, 'PATCH', guildSettings.toJson());
+  return await apiRequestWithToken(`guild/${guildId}`, this.token, 'PATCH', guildSettings.toJson());
 };
