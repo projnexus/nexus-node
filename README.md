@@ -7,7 +7,7 @@ This is the official and verified adapter used to interact with the Nexus API us
 - Javascript
 - Typescript
 
-You can see how to use this adapter [here](https://developers.projectnexus.cc/adapters/node.js)
+You can see how to use this adapter [here](https://developers.projectnexus.cc/official-wrappers/nexus-for-node.js)
 
 # Installation
 
