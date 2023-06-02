@@ -10,7 +10,7 @@ import { User } from './User';
 
 // Routes
 import { testroute } from '../routes/testroute';
-import { getAllGuilds, getGuild, createGuild, deleteGuild, updateGuild } from '../routes/guilds';
+import { getGuild, createGuild, deleteGuild, updateGuild } from '../routes/guilds';
 import {
   getAllInfractions,
   getInfraction,
@@ -36,7 +36,6 @@ export class Client {
   public routes: {
     test: () => Promise<{ response: Response; status: number }>;
     guilds: {
-      getAll: () => Promise<{ response: Response; status: number }>;
       get: (guildId: string) => Promise<{ response: Response; status: number }>;
       create: (guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>;
       delete: (guildId: string) => Promise<{ response: Response; status: number }>;
@@ -60,7 +59,6 @@ export class Client {
   } = {
     test: testroute.bind(this),
     guilds: {
-      getAll: getAllGuilds.bind(this),
       get: getGuild.bind(this),
       create: createGuild.bind(this),
       delete: deleteGuild.bind(this),
