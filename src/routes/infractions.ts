@@ -12,7 +12,7 @@ export const getInfraction = async function (
   infractionId: string,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`infractions/${infractionId}`, this.token);
+  return await apiRequestWithToken(`infraction/${infractionId}`, this.token);
 };
 
 export const createInfraction = async function (
@@ -20,7 +20,7 @@ export const createInfraction = async function (
   infraction: Infraction,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`infractions`, this.token, 'POST', infraction.toJson());
+  return await apiRequestWithToken(`infraction`, this.token, 'POST', infraction.toJson());
 };
 
 export const deleteInfraction = async function (
@@ -28,7 +28,7 @@ export const deleteInfraction = async function (
   infractionId: string,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`infractions/${infractionId}`, this.token, 'DELETE');
+  return await apiRequestWithToken(`infraction/${infractionId}`, this.token, 'DELETE');
 };
 
 export const updateInfraction = async function (
@@ -37,5 +37,5 @@ export const updateInfraction = async function (
   infraction: Infraction,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`infractions/${infraction.id}`, this.token, 'PATCH', infraction.toJson());
+  return await apiRequestWithToken(`infraction/${infraction.id}`, this.token, 'PATCH', infraction.toJson());
 };
