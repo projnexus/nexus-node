@@ -97,7 +97,7 @@ export class Client {
     },
   };
 
-  constructor(token: string = '0', useToken: boolean = false, silent: boolean = false) {
+  constructor({ token = '0', useToken = false, silent = false }) {
     this.token = token;
     this.useToken = useToken;
     this.silent = silent;
