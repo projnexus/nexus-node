@@ -9,7 +9,6 @@ import { Infraction } from './Infraction';
 import { User } from './User';
 
 // Routes
-import { testroute } from '../routes/testroute';
 import { getGuildCount, getGuild, createGuild, deleteGuild, updateGuild } from '../routes/guilds';
 import {
   getInfractionCount,
@@ -35,7 +34,6 @@ export class Client {
   };
 
   public routes: {
-    test: () => Promise<{ response: Response; status: number }>;
     guilds: {
       count: () => Promise<{ response: Response; status: number }>;
       get: (guildId: string) => Promise<{ response: Response; status: number }>;
@@ -67,7 +65,6 @@ export class Client {
       };
     };
   } = {
-    test: testroute.bind(this),
     guilds: {
       count: getGuildCount.bind(this),
       get: getGuild.bind(this),
@@ -122,8 +119,8 @@ export class Client {
     return this.token.length > 0;
   }
 
-  public async authenticate(): Promise<boolean> {
-    const { response, status } = await this.routes.test();
-    return status === 200;
-  }
+  // public async authenticate(): Promise<boolean> {
+  //   const { response, status } = await this.routes.test();
+  //   return status === 200;
+  // }
 }
