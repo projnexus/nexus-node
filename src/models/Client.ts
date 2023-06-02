@@ -119,8 +119,8 @@ export class Client {
     return this.token.length > 0;
   }
 
-  // public async authenticate(): Promise<boolean> {
-  //   const { response, status } = await this.routes.test();
-  //   return status === 200;
-  // }
+  public async authenticate(): Promise<boolean> {
+    const { response, status } = await this.routes.guilds.get('0'); // Since we removed the test route, we can use the guild get route
+    return status === 404; // If we get a 404, we're authenticated
+  }
 }
