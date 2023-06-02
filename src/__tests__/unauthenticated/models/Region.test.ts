@@ -1,5 +1,5 @@
-import { Region } from '../../models/Region';
-import { RegionEnum } from '../../models/Region';
+import { RegionEnum } from '../../../models/Region';
+import { Region } from '../../../models/Region';
 
 describe('Region', () => {
   test('Get all regions', () => {

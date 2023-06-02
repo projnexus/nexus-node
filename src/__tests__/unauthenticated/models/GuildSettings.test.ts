@@ -1,5 +1,5 @@
-import { RegionEnum } from '../../models/Region';
-import { GuildSettings } from '../../models/GuildSettings';
+import { GuildSettings } from '../../../models/GuildSettings';
+import { RegionEnum } from "../../../models/Region";
 
 describe('GuildSettings', () => {
   test('Plain Creation', () => {

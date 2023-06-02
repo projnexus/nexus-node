@@ -8,7 +8,8 @@
     "lib/**/*"
   ],
   "scripts": {
-    "test": "jest --config jestconfig.json",
+    "test": "jest --testPathPattern=__tests__/\\unauthenticated",
+    "test:auth": "jest --testPathPattern=__tests__/\\authenticated",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
