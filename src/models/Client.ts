@@ -10,16 +10,17 @@ import { User } from './User';
 
 // Routes
 import { testroute } from '../routes/testroute';
-import { getGuild, createGuild, deleteGuild, updateGuild } from '../routes/guilds';
+import { getGuildCount, getGuild, createGuild, deleteGuild, updateGuild } from '../routes/guilds';
 import {
+  getInfractionCount,
   getAllInfractions,
   getInfraction,
   createInfraction,
   deleteInfraction,
   updateInfraction,
 } from '../routes/infractions';
-import { createKey } from '../routes/admin';
-import { getAllUsers, getUser, deleteUser } from '../routes/users';
+import { getKey, createKey, deleteKey, updateKey } from '../routes/admin';
+import { getUserCount, getAllUsers, getUser, deleteUser, updateUser } from '../routes/users';
 
 export class Client {
   public token: string;
@@ -36,12 +37,14 @@ export class Client {
   public routes: {
     test: () => Promise<{ response: Response; status: number }>;
     guilds: {
+      count: () => Promise<{ response: Response; status: number }>;
       get: (guildId: string) => Promise<{ response: Response; status: number }>;
       create: (guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>;
       delete: (guildId: string) => Promise<{ response: Response; status: number }>;
       update: (guildId: string, guildSettings: GuildSettings) => Promise<{ response: Response; status: number }>;
     };
     infractions: {
+      count: () => Promise<{ response: Response; status: number }>;
       getAll: () => Promise<{ response: Response; status: number }>;
       get: (infractionId: string) => Promise<{ response: Response; status: number }>;
       create: (infraction: Infraction) => Promise<{ response: Response; status: number }>;
@@ -49,22 +52,31 @@ export class Client {
       update: (infractionId: string, infraction: Infraction) => Promise<{ response: Response; status: number }>;
     };
     users: {
+      count: () => Promise<{ response: Response; status: number }>;
       getAll: () => Promise<{ response: Response; status: number }>;
       get: (userId: string) => Promise<{ response: Response; status: number }>;
-      delete: (user: User) => Promise<{ response: Response; status: number }>;
+      delete: (userId: string) => Promise<{ response: Response; status: number }>;
+      update: (user: User) => Promise<{ response: Response; status: number }>;
     };
     admin: {
-      createKey: (data: object) => Promise<{ response: Response; status: number }>;
+      key: {
+        get: (key: string) => Promise<{ response: Response; status: number }>;
+        create: (data: object) => Promise<{ response: Response; status: number }>;
+        delete: (key: string) => Promise<{ response: Response; status: number }>;
+        update: (key: string, data: object) => Promise<{ response: Response; status: number }>;
+      };
     };
   } = {
     test: testroute.bind(this),
     guilds: {
+      count: getGuildCount.bind(this),
       get: getGuild.bind(this),
       create: createGuild.bind(this),
       delete: deleteGuild.bind(this),
       update: updateGuild.bind(this),
     },
     infractions: {
+      count: getInfractionCount.bind(this),
       getAll: getAllInfractions.bind(this),
       get: getInfraction.bind(this),
       create: createInfraction.bind(this),
@@ -72,12 +84,19 @@ export class Client {
       update: updateInfraction.bind(this),
     },
     users: {
+      count: getUserCount.bind(this),
       getAll: getAllUsers.bind(this),
       get: getUser.bind(this),
       delete: deleteUser.bind(this),
+      update: updateUser.bind(this),
     },
     admin: {
-      createKey: createKey.bind(this),
+      key: {
+        get: getKey.bind(this),
+        create: createKey.bind(this),
+        delete: deleteKey.bind(this),
+        update: updateKey.bind(this),
+      },
     },
   };
 
