@@ -17,7 +17,7 @@ export const apiRequest = async (
   }
 
   return new Promise<{ response: Response; status: number }>((resolve) => {
-    fetch(`https://projectnexus.cc/api/${endpoint}`, requestOptions).then((res) => {
+    fetch(`https://api.projectnexus.cc/${endpoint}`, requestOptions).then((res) => {
       const status = res.status;
       resolve({ response: res, status });
     });
@@ -45,7 +45,7 @@ export const apiRequestWithToken = async (
   }
 
   return new Promise<{ response: Response; status: number }>((resolve) => {
-    fetch(`https://projectnexus.cc/api/${endpoint}`, requestOptions).then((res) => {
+    fetch(`https://api.projectnexus.cc/${endpoint}`, requestOptions).then((res) => {
       const status = res.status;
       resolve({ response: res, status });
     });
