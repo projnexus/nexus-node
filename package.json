@@ -1,6 +1,6 @@
 {
   "name": "@projnexus/nexus-node",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Officially supported Node.js Adapter for Nexus.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,8 +8,8 @@
     "lib/**/*"
   ],
   "scripts": {
-    "test": "jest --testPathPattern=__tests__/\\unauthenticated",
-    "test:auth": "jest --testPathPattern=__tests__/\\authenticated",
+    "test": "jest --config jest.config.unauthenticated.js",
+    "test:auth": "jest --config jest.config.authenticated.js",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
@@ -24,7 +24,11 @@
     "type": "git",
     "url": "git+https://github.com/projnexus/nexus-node.git"
   },
-  "keywords": ["nexus", "adapter", "api"],
+  "keywords": [
+    "nexus",
+    "adapter",
+    "api"
+  ],
   "author": "Lvmostwanted <github.com/lvmostwanted>",
   "license": "MIT",
   "bugs": {
