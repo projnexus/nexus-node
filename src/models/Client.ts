@@ -18,7 +18,6 @@ import {
   deleteInfraction,
   updateInfraction,
 } from '../routes/infractions';
-import { getBansByRegion } from '../routes/regions';
 import { createKey } from '../routes/admin';
 import { getAllUsers, getUser, deleteUser } from '../routes/users';
 
@@ -55,9 +54,6 @@ export class Client {
       get: (userId: string) => Promise<{ response: Response; status: number }>;
       delete: (user: User) => Promise<{ response: Response; status: number }>;
     };
-    regions: {
-      get: (regionId: string) => Promise<{ response: Response; status: number }>;
-    };
     admin: {
       createKey: (data: object) => Promise<{ response: Response; status: number }>;
     };
@@ -81,9 +77,6 @@ export class Client {
       getAll: getAllUsers.bind(this),
       get: getUser.bind(this),
       delete: deleteUser.bind(this),
-    },
-    regions: {
-      get: getBansByRegion.bind(this),
     },
     admin: {
       createKey: createKey.bind(this),
