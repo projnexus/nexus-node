@@ -10,9 +10,9 @@ import { GuildSettings } from '../models/GuildSettings';
  * @returns {Promise<{ response: Response; status: number }>}
  */
 export const getGuildCount = async function (this: Client): Promise<{ response: Response; status: number }> {
-    if (!this) throw new Error('Client not initialized');
-    return await apiRequestWithToken('guilds/count', this.token);
-}
+  if (!this) throw new Error('Client not initialized');
+  return await apiRequestWithToken('guilds/count', this.token);
+};
 
 /**
  * Get the information of a guild
