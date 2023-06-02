@@ -79,5 +79,5 @@ export const updateGuild = async function (
   guildSettings: GuildSettings,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`guild/${guildId}`, this.token, 'PATCH', guildSettings.toJson());
+  return await apiRequestWithToken(`guild/${guildId}`, this.token, 'PUT', guildSettings.toJson());
 };

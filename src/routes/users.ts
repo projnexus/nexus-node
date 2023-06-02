@@ -74,5 +74,5 @@ export const deleteUser = async function (
  */
 export const updateUser = async function (this: Client, user: User): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`user/${user.id}`, this.token, 'PATCH', user.toJson());
+  return await apiRequestWithToken(`user/${user.id}`, this.token, 'PUT', user.toJson());
 };

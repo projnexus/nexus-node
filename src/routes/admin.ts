@@ -55,5 +55,5 @@ export const updateKey = async function (
   data: object,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`admin/key/${key}`, this.token, 'PATCH', data);
+  return await apiRequestWithToken(`admin/key/${key}`, this.token, 'PUT', data);
 };

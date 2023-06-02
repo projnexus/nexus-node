@@ -91,5 +91,5 @@ export const updateInfraction = async function (
   infraction: Infraction,
 ): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
-  return await apiRequestWithToken(`infraction/${infraction.id}`, this.token, 'PATCH', infraction.toJson());
+  return await apiRequestWithToken(`infraction/${infraction.id}`, this.token, 'PUT', infraction.toJson());
 };
