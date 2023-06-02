@@ -2,6 +2,11 @@ import { apiRequestWithToken } from '../utils/request';
 import { Client } from '../models/Client';
 import { Infraction } from '../models/Infraction';
 
+export const getInfractionCount = async function (this: Client): Promise<{ response: Response; status: number }> {
+    if (!this) throw new Error('Client not initialized');
+    return await apiRequestWithToken('infractions/count', this.token);
+}
+
 export const getAllInfractions = async function (this: Client): Promise<{ response: Response; status: number }> {
   if (!this) throw new Error('Client not initialized');
   return await apiRequestWithToken('infractions', this.token);
